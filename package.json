@@ -1,45 +1,79 @@
 {
-  "name": "python-auto-printf",
-  "displayName": "Python Auto Printf",
-  "description": "A Quick Command to generate Python print out log messages utilizing f-string in Visual Studio Code.",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.74.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "onCommand:python-auto-printf.helloWorld"
-  ],
-  "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "python-auto-printf.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
-  },
-  "devDependencies": {
-    "@types/vscode": "^1.74.0",
-    "@types/glob": "^8.0.0",
-    "@types/mocha": "^10.0.1",
-    "@types/node": "16.x",
-    "@typescript-eslint/eslint-plugin": "^5.45.0",
-    "@typescript-eslint/parser": "^5.45.0",
-    "eslint": "^8.28.0",
-    "glob": "^8.0.3",
-    "mocha": "^10.1.0",
-    "typescript": "^4.9.3",
-    "@vscode/test-electron": "^2.2.0"
-  }
+    "name": "python-auto-printf",
+    "displayName": "Python Auto Printf",
+    "description": "A Quick Command to generate Python print out log messages utilizing f-string in Visual Studio Code.",
+    "version": "0.1.0",
+    "publisher": "Mylesthemonster",
+    "author": {
+        "name": "Myles Johnson"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Mylesthemonster/Python-Quick-Print"
+    },
+    "icon": "images/icon.png",
+    "galleryBanner": {
+        "color": "#C80000",
+        "theme": "dark"
+    },
+    "engines": {
+        "vscode": "^1.27.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Debuggers",
+        "Other"
+    ],
+    "keywords": [
+        "Python",
+        "Print",
+        "Log"
+    ],
+    "activationEvents": [
+        "onLanguage:python",
+        "onCommand:extension.print"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "languages": [
+            {
+                "id": "python",
+                "aliases": [
+                    "Python",
+                    "Python3"
+                ],
+                "extensions": [
+                    ".py"
+                ]
+            }
+        ],
+        "commands": [
+            {
+                "command": "extension.print",
+                "title": "Print Python Selection"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "extension.print",
+                "key": "ctrl+shift+l",
+                "mac": "cmd+shift+l",
+                "when": "editorTextFocus"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.21",
+        "tslint": "^5.8.0",
+        "@types/node": "^8.10.25",
+        "@types/mocha": "^2.2.42"
+    }
 }

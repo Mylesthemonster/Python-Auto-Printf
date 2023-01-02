@@ -1,71 +1,37 @@
-# python-auto-printf README
+# Python Auto Printf
 
-This is the README for your extension "python-auto-printf". After writing up a brief description, we recommend including the following sections.
+A Quick Command to generate Python print out log messages utilizing f-string in Visual Studio Code.
+A fork from [Python-Quick-Print](https://marketplace.visualstudio.com/items?itemName=AhadCove.python-quick-print)
 
-## Features
+## Installing
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+This extension is available for free in the Visual Studio Code Marketplace
 
-For example if there is an image subfolder under your extension project workspace:
+## Warning :warning:
 
-\!\[feature X\]\(images/feature-x.png\)
+This uses Python 3 syntax, If you're using Python 2 print isn't a function.
+You can import this behavior from __future__:
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+`from __future__ import print_function`
 
-## Requirements
+## How to use
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+### ONLY WORKS WITH .py FILES
 
-## Extension Settings
+* Highlight anything in vs code
+* For MAC press `⌘+Shift+L`
+* For Windows, etc press `Ctrl+Shift+L`
+* The output, on a new line, will be: `print(f'variable: {variable}')`
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+### Editing Keyboard Shortcut
 
-For example:
+By default the keyboard shortcut is `⌘+Shift+L` or `Ctrl+Shift+L`
+If this shortcut interferes with another extension or system wide Shortcut, you may change it in the `Keyboard Shortcuts Setting`.
 
-This extension contributes the following settings:
+Press `⌘+P` or `Ctrl+P` and type in `Open Keyboard Shortcuts`.
+Search for `Print Python Selection` and click on the `pen icon`.
+This is where you can enter any `Shortcut` you choose.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+## License
 
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+[MIT License](LICENSE)

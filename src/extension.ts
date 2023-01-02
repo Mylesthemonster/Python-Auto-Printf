@@ -1,26 +1,43 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
+'use strict';
 import * as vscode from 'vscode';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+const insertText = (text: string) => {
+    const editor = vscode.window.activeTextEditor;
+
+    if (!editor) {
+        vscode.window.showErrorMessage('Can\'t insert print because no document is open');
+        return;
+    }
+
+    const selection = editor.selection;
+
+    const range = new vscode.Range(selection.start, selection.end);
+
+    editor.edit((editBuilder) => {
+        editBuilder.replace(range, text);
+    });
+};
+
 export function activate(context: vscode.ExtensionContext) {
+    console.log('Python Quick Print is now active!');
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "python-auto-printf" is now active!');
+    let disposable = vscode.commands.registerCommand('extension.print', () => {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor) { return; }
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('python-auto-printf.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Python Auto Printf!');
-	});
+        const selection = editor.selection;
+        const text = editor.document.getText(selection);
 
-	context.subscriptions.push(disposable);
+        text
+            ? vscode.commands.executeCommand('editor.action.insertLineAfter')
+                .then(() => {
+                    const logToInsert = `print(f'${text}: {${text}}')`;
+                    insertText(logToInsert);
+                })
+            : insertText('print()');
+    });
+
+    context.subscriptions.push(disposable);
 }
 
-// This method is called when your extension is deactivated
 export function deactivate() {}
